@@ -1,0 +1,10 @@
+<div class="item" *ngFor="let item of (items | page :currentPage :pageSize)">
+    <h2>{{ item.index }}{{ item.type }}: {{ item.name }}</h2>
+    <img src="{{item.picture}}" alt="" class="item-img img-responsive" />
+    <p>
+        {{item.info}}
+    </p>
+    <p class="item-price">{{item.price}}</p>
+    <a href="#" class="btn btn-primary">放入購物車 <span class="glyphicon glyphicon-chevron-right"></span
+></a>
+</div>

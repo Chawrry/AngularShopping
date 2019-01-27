@@ -1,0 +1,5 @@
+<ul class="pagination">
+    <li class="page-item" [class.disabled]="currentPage == 0" (click)="prePage()"><a class="page-link">« Prev</a></li>
+    <li class="page-item" [class.disabled]="isClick(idx)" *ngFor="let x of paggings;let idx = index" (click)="clickPage(idx,$event )"><a class="page-link">{{ pageSet*pageSize + (idx + 1) }}</a></li>
+    <li class="page-item" [class.disabled]="inThePageEnd()" (click)="nextPage()"><a class="page-link">Next &raquo;</a></li>
+</ul>
