@@ -20,7 +20,7 @@ export class PagesComponent implements OnInit {
 
   ngOnInit() {
     console.log('pages init');
-    this.paggings = new Array(this.pageSize);
+    this.paggings = new Array(10);
   }
 
   clickPage(idx) {
@@ -46,13 +46,22 @@ export class PagesComponent implements OnInit {
     if (this.currentPage === Math.ceil(this.items.length / this.pageSize) - 1) {
       return;
     }
-    if (this.currentPage % this.pageSize === 2) {
+    if (this.currentPage % this.pageSize === this.pageSize - 1) {
       this.pageSet ++;
     }
     this.currentPageChange.emit(this.currentPage + 1 );
   }
 
   inThePageEnd() {
-    // return this.currentPage === Math.ceil(this.items.length / this.pageSize) - 1;
+    if (this.items) {
+      return this.currentPage === Math.ceil(this.items.length / this.pageSize) - 1;
+    }
+  }
+
+  showPages(pages) {
+    if (this.items) {
+      return pages <= Math.ceil(this.items.length / this.pageSize);
+    }
   }
 }
+console.log('pages ok');

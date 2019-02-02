@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {Items} from '../app.component';
+import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-shopping-car',
@@ -7,10 +7,31 @@ import {Items} from '../app.component';
   styleUrls: ['./shopping-car.component.css']
 })
 export class ShoppingCarComponent implements OnInit {
-  @Input() items: Items[];
-  constructor() { }
+
+  constructor(private comService: CommonService) { }
 
   ngOnInit() {
   }
 
+  addItemCount(item) {
+    this.comService.shoppingCarItems.map( data => {
+      if (data.id === item.id) {
+        data.count++;
+        this.comService.sum += item.price;
+      }
+    });
+  }
+
+  subItemCount(item) {
+    if (item.count === 1) {
+      this.comService.shoppingCarItems.splice(this.comService.shoppingCarItems.indexOf(item), 1);
+    } else {
+      this.comService.shoppingCarItems.map( data => {
+        if (data.id === item.id ) {
+          data.count--;
+        }
+      });
+    }
+    this.comService.sum -= item.price;
+  }
 }

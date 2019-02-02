@@ -1,7 +1,7 @@
 <div class="well ">
     <h4>商品搜尋</h4>
     <div class="input-group ">
-        <input type="text" class="form-control" /><span class="input-group-btn"><button class="btn btn-default">
+        <input type="text" class="form-control" #serchWords (blur)="filterSearchWords(serchWords)" (keyup.enter)="filterSearchWords(serchWords)" /><span class="input-group-btn"><button class="btn btn-default">
     <span class="glyphicon glyphicon-search "></span></button>
         </span>
     </div>

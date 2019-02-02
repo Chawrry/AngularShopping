@@ -1,18 +1,18 @@
 <div class="well cart">
     <h4>購物車</h4>
-    <ul class="itemsInCart ">
+    <ul class="itemsInCart" *ngFor="let data of comService.shoppingCarItems">
         <li>
             <div class="cart-item">
-                <div class="cart-title">Mcconnell</div>
-                <span class="price">$ 834</span> x
-                <span class="count">1</span>
+                <div class="cart-title">{{ data.name }}</div>
+                <span class="price">{{ data.price | currency: 'USD' : 'symbol' : '1.0' }}</span> x
+                <span class="count">{{ data.count }}</span>
                 <div class="handler">
-                    <a href="#" class="cart-btn plus">+</a
-      ><a href="#" class="cart-btn minus">-</a>
+                    <a href="#" class="cart-btn plus" (click)="addItemCount(data)">+</a
+            ><a href="#" class="cart-btn minus" (click)="subItemCount(data)">-</a>
                 </div>
             </div>
         </li>
     </ul>
     <hr />
-    <p>小計： <span>$ 834</span></p>
+    <p>小計： <span>{{ comService.sum }}</span></p>
 </div>
