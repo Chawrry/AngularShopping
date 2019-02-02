@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Items} from '../app.component';
+import { Items } from '../app.component';
 import { CommonService } from '../common.service';
 
 @Component({
@@ -11,7 +11,9 @@ export class ItemsComponent implements OnInit {
   @Input() items: Items[];
   @Input() currentPage: number;
   @Input() pageSize: number;
-  constructor(private comService: CommonService) { console.log('items crreate'); }
+  constructor(private comService: CommonService) {
+    console.log('items crreate');
+  }
 
   ngOnInit() {
     console.log('items init');
@@ -20,9 +22,10 @@ export class ItemsComponent implements OnInit {
   putIntoCar(item) {
     const shoppingCar = this.comService.shoppingCarItems;
     if (shoppingCar.indexOf(item) >= 0) {
-      shoppingCar.map( data => {
+      // 一樣的問題，Array map 用法有問題，請重新看 MDN 關於 Array Map 的用法
+      shoppingCar.map(data => {
         if (data.id === item.id) {
-          data.count ++;
+          data.count++;
         }
       });
     } else {

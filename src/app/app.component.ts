@@ -14,14 +14,16 @@ export class AppComponent implements OnInit {
   pageSize = 10;
   searchWords = '';
 
-  constructor(private http: HttpClient, private comService: CommonService) { console.log('app crreate'); }
+  constructor(private http: HttpClient, private comService: CommonService) {
+    console.log('app crreate');
+  }
 
   ngOnInit() {
     console.log('app init');
-    this.http.get('/assets/pros-list.json')
-    .subscribe( (data: Items[]) => {
-      data.map(_data => _data.count = 1);
-      this.items = data ;
+    this.http.get('/assets/pros-list.json').subscribe((data: Items[]) => {
+      // 這一行的目的是什麼? array.map always return a new array
+      // data.map(_data => _data.count = 1);
+      this.items = data;
     });
   }
 
