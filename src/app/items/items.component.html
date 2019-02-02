@@ -1,10 +1,20 @@
-<div class="item" *ngFor="let item of (items | page :currentPage :pageSize :comService.searchWords)">
-    <h2>{{ item.index }}{{ item.type }}: {{ item.name }}</h2>
-    <img src="{{item.picture}}" alt="" class="item-img img-responsive" />
-    <p>
-        {{item.info}}
-    </p>
-    <p class="item-price">{{item.price | currency: 'USD' : 'symbol' : '1.0'}}</p>
-    <a href="#" class="btn btn-primary" (click)="putIntoCar(item)">放入購物車 <span class="glyphicon glyphicon-chevron-right"></span
-></a>
+<!--
+  1. angular 有 slice pipe, 可以參考看看
+  2. pipe 可以用組合的，所以可以先 filter 後再 slice
+-->
+<div
+  class="item"
+  *ngFor="
+    let item of (items | page: currentPage:pageSize:comService.searchWords)
+  "
+>
+  <h2>{{ item.index }}{{ item.type }}: {{ item.name }}</h2>
+  <img src="{{ item.picture }}" alt="" class="item-img img-responsive" />
+  <p>
+    {{ item.info }}
+  </p>
+  <p class="item-price">{{ item.price | currency: 'USD':'symbol':'1.0' }}</p>
+  <a href="#" class="btn btn-primary" (click)="putIntoCar(item)"
+    >放入購物車 <span class="glyphicon glyphicon-chevron-right"></span
+  ></a>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {Items} from '../app.component';
+import { Items } from '../app.component';
 
+// Review: 這裡的做法有點複雜化了，可以先想想 items 的部分，再回來思考這裡是否需要寫這麼複雜
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
@@ -16,7 +17,7 @@ export class PagesComponent implements OnInit {
   onClickEvent = false;
   constructor() {
     console.log('pages create');
-   }
+  }
 
   ngOnInit() {
     console.log('pages init');
@@ -37,9 +38,9 @@ export class PagesComponent implements OnInit {
       return;
     }
     if (this.currentPage % this.pageSize === 0) {
-      this.pageSet --;
+      this.pageSet--;
     }
-    this.currentPageChange.emit(this.currentPage - 1 );
+    this.currentPageChange.emit(this.currentPage - 1);
   }
 
   nextPage() {
@@ -47,14 +48,16 @@ export class PagesComponent implements OnInit {
       return;
     }
     if (this.currentPage % this.pageSize === this.pageSize - 1) {
-      this.pageSet ++;
+      this.pageSet++;
     }
-    this.currentPageChange.emit(this.currentPage + 1 );
+    this.currentPageChange.emit(this.currentPage + 1);
   }
 
   inThePageEnd() {
     if (this.items) {
-      return this.currentPage === Math.ceil(this.items.length / this.pageSize) - 1;
+      return (
+        this.currentPage === Math.ceil(this.items.length / this.pageSize) - 1
+      );
     }
   }
 
